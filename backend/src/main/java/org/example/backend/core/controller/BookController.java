@@ -20,22 +20,22 @@ public class BookController {
     @GetMapping("/books")
     public Response<List<Book>> getAllBooks() {
         List<Book> books = this.bookService.read();
-        return new Response<>(Status.SUCCESS, books, null);
+        return new Response<>(Status.SUCCESS, books);
     }
 
     @PostMapping("/new_book")
     public Response<Book> newBook(@RequestBody Book book) {
         Book newBook = this.bookService.create(book);
-        return new Response<>(Status.SUCCESS, newBook, null);
+        return new Response<>(Status.SUCCESS, newBook);
     }
 
     @PutMapping("/update_book")
     public Response<Book> updateBook(@RequestBody Book book) {
         try {
             this.bookService.update(book);
-            return new Response<>(Status.SUCCESS, book, null);
+            return new Response<>(Status.SUCCESS, book);
         } catch (Exception e) {
-            return new Response<>(Status.ERROR, null, e.getMessage());
+            return new Response<>(Status.ERROR, e.getMessage());
         }
     }
 
@@ -43,9 +43,9 @@ public class BookController {
     public Response<Book> deleteBook(@RequestBody Book book) {
         try {
             this.bookService.delete(book);
-            return new Response<>(Status.SUCCESS, book, null);
+            return new Response<>(Status.SUCCESS, book);
         } catch (Exception e) {
-            return new Response<>(Status.ERROR, null, e.getMessage());
+            return new Response<>(Status.ERROR, e.getMessage());
         }
     }
 }
