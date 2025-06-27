@@ -10,6 +10,10 @@ onMounted(async () => {
 </script>
 
 <template>
+
+  <div v-if="store.getters.loading">Загрузка данных...</div>
+  <div v-if="store.getters.error" style="color: red">{{ store.getters.error }}</div>
+
   <AddBook/>
   <table border="1" cellpadding="10" cellspacing="0">
     <thead>
