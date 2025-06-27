@@ -21,32 +21,32 @@ public class BookController {
     @GetMapping("/books")
     public Response<List<Book>> getAllBooks() {
         List<Book> books = this.bookService.read();
-        return new Response<>(Status.SUCCESS, books);
+        return new Response<>(Status.SUCCESS, books, null);
     }
 
     @PostMapping("/new_book")
     public Response<Book> newBook(@RequestBody Book book) {
         Book newBook = this.bookService.create(book);
-        return new Response<>(Status.SUCCESS, newBook);
+        return new Response<>(Status.SUCCESS, newBook, null);
     }
 
     @PutMapping("/update_book")
     public Response<Book> updateBook(@RequestBody Book book) {
         try {
             this.bookService.update(book);
-            return new Response<>(Status.SUCCESS, book);
+            return new Response<>(Status.SUCCESS, book, null);
         } catch (Exception e) {
-            return new Response<>(Status.ERROR, e.getMessage());
+            return new Response<>(Status.ERROR, null, e.getMessage());
         }
     }
 
     @DeleteMapping("/delete_book")
-    public Response<Book> deleteBook(@RequestParam Integer id) {
+    public Response<String> deleteBook(@RequestParam Integer id) {
         try {
             this.bookService.delete(id);
-            return new Response<>(Status.SUCCESS, id.toString());
+            return new Response<>(Status.SUCCESS, id.toString(), null);
         } catch (Exception e) {
-            return new Response<>(Status.ERROR, e.getMessage());
+            return new Response<>(Status.ERROR, null, e.getMessage());
         }
     }
 }
