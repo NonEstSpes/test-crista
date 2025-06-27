@@ -45,6 +45,7 @@ const store: Store<StoreBook> = createStore<StoreBook>({
             state.error = error
         },
         SET_EDITING_ID(state: StoreBook, id: number | null): void {
+            console.log(id)
             state.editingId = id
         }
     },
@@ -89,12 +90,11 @@ const store: Store<StoreBook> = createStore<StoreBook>({
                 commit('SET_LOADING', false)
             }
         },
-        async deleteBook({ commit, dispatch }, book: Book): Promise<void> {
+        async deleteBook({ commit, dispatch }, bookId: number): Promise<void> {
             commit('SET_LOADING', true)
             commit('SET_ERROR', null)
-
             try {
-                const response: ResponseBook<Book> = await api.deleteBook(book)
+                const response: ResponseBook<Book> = await api.deleteBook(bookId)
                 commit('DELETE_BOOK', response.data)
                 commit('SET_EDITING_ID', null)
                 dispatch('fetchBooks')

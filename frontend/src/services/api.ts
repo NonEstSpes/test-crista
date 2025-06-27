@@ -8,20 +8,20 @@ const apiClient: AxiosInstance = axios.create({
 
 export default {
     getAllBooks(): Promise<ResponseBook<Book[]>> {
-        return apiClient.get('/books');
+        return apiClient.get('/books').then((res) => res.data);
     },
 
     createBook(book: Book): Promise<ResponseBook<Book>> {
-        return apiClient.post('/new_book', book);
+        return apiClient.post('/new_book', book).then((res) => res.data);
     },
 
     updateBook(book: Book): Promise<ResponseBook<Book>> {
-        return apiClient.put('/update_book', book);
+        return apiClient.put('/update_book', book).then((res) => res.data);
     },
 
-    deleteBook(book: Book): Promise<ResponseBook<Book>> {
+    deleteBook(bookId: number): Promise<ResponseBook<Book>> {
         return apiClient.delete('/delete_book', {
-            params: book
-        });
+            params: {id: bookId}
+        }).then((res) => res.data);
     }
 }

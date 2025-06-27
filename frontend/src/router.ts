@@ -1,11 +1,11 @@
-import Table from "@/components/Table.vue";
 import {createMemoryHistory, createRouter, Router, RouteRecordRaw} from "vue-router";
+import List from "@/components/List.vue";
 
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'Home',
-        component: Table
+        component: List
     }
 ]
 

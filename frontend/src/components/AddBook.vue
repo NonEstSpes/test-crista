@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import api from "@/services/api.ts";
+import store from "@/store";
 
-const newBook = ref({
+interface BookForm {
+  title: string;
+  author: string;
+  year: null | number;
+}
+
+const newBook = ref<BookForm>({
   title: '',
   author: '',
-  year: null
+  year: null,
 });
 
-function addBook(newBook) {
-  api.createBook(newBook).then(() => {
-    alert('Книга добавлена');
-  })
+function addBook() {
+  if (newBook.value.year !== null) {
+    store.dispatch('addBook', newBook.value);
+  }
 }
 </script>
 
@@ -26,5 +32,8 @@ function addBook(newBook) {
 </template>
 
 <style scoped>
-
+input {
+  margin-right: 10px;
+  width: 150px;
+}
 </style>

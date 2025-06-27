@@ -1,4 +1,4 @@
-package org.example.backend.core.dto;
+package org.example.backend.core.response;
 
 import lombok.Getter;
 

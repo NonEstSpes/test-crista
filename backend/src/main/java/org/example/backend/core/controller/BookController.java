@@ -1,7 +1,7 @@
 package org.example.backend.core.controller;
 
-import org.example.backend.core.dto.Response;
-import org.example.backend.core.dto.Status;
+import org.example.backend.core.response.Response;
+import org.example.backend.core.response.Status;
 import org.example.backend.core.entities.Book;
 import org.example.backend.core.services.BookService;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:5173")
 public class BookController {
     private final BookService bookService;
 
@@ -40,10 +41,10 @@ public class BookController {
     }
 
     @DeleteMapping("/delete_book")
-    public Response<Book> deleteBook(@RequestBody Book book) {
+    public Response<Book> deleteBook(@RequestParam Integer id) {
         try {
-            this.bookService.delete(book);
-            return new Response<>(Status.SUCCESS, book);
+            this.bookService.delete(id);
+            return new Response<>(Status.SUCCESS, id.toString());
         } catch (Exception e) {
             return new Response<>(Status.ERROR, e.getMessage());
         }
