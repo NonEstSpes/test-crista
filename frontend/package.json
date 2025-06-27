@@ -11,11 +11,15 @@
   "dependencies": {
     "axios": "^1.10.0",
     "vue": "^3.5.17",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "vite": "^7.0.0",
-    "vite-plugin-vue-devtools": "^7.7.7"
+    "vite-plugin-vue-devtools": "^7.7.7",
+    "vue-tsc": "^2.2.10"
   }
 }
